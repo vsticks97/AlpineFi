@@ -1,0 +1,43 @@
+class DeFiProtocol:
+    def __init__(self):
+        # Initialize supported tokens and their balances
+        self.tokens = {
+            'ETH': 100,
+            'ERC20': 200,
+            'BEP20': 300
+        }
+
+    def swap(self, from_token, to_token, amount):
+        # Simulate swapping from one token to another
+        if from_token in self.tokens and to_token in self.tokens:
+            if self.tokens[from_token] >= amount:
+                self.tokens[from_token] -= amount
+                self.tokens[to_token] += amount
+                print(f"Swapped {amount} {from_token} to {to_token}")
+            else:
+                print("Insufficient balance for swapping")
+        else:
+            print("Tokens not supported")
+
+    def bridge(self, from_network, to_network, token, amount):
+        # Simulate bridging tokens between networks
+        if token in self.tokens:
+            if from_network != to_network:
+                if self.tokens[token] >= amount:
+                    self.tokens[token] -= amount
+                    print(f"Bridged {amount} {token} from {from_network} to {to_network}")
+                else:
+                    print("Insufficient balance for bridging")
+            else:
+                print("Cannot bridge within the same network")
+        else:
+            print("Token not supported")
+
+# Example usage
+defi = DeFiProtocol()
+
+# Swapping example
+defi.swap('ETH', 'ERC20', 20)
+
+# Bridging example
+defi.bridge('ETH', 'BSC', 'ERC20', 50)
